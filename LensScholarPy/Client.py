@@ -102,7 +102,7 @@ class ScholarConfig:
     def __init__(self) -> None:
         dotenv.load_dotenv()
         self.api_key = os.getenv("LENS_SCHOLAR_API_KEY")
-        self.search_url = "https://api.lens.org/scholarly/"
+        self.search_url = "https://api.lens.org/scholarly"
         self.usage_url = "https://api.lens.org/subscriptions/scholarly_api/usage"
         self.content_type = 'application/json'
         self.accept = 'application/json'
@@ -237,7 +237,7 @@ class ScholarClient(ScholarConfig):
             'accept': self.accept
         }
 
-        response = requests.get(f"{self.search_url}{lens_id}", headers=headers)
+        response = requests.get(f"{self.search_url}/{lens_id}", headers=headers)
         return response.json()
     
     def scholar_request_scroll(self,
